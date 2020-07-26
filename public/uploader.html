@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="css/all.css" rel="stylesheet">
+    <title>UPLOADER</title>
+</head>
+
+<body>
+    <nav style="background-color:indianred;">
+        <div class="logo">
+            <h4>
+                <a href="index.html">**UPLOADER - HK ART GEAR**</a>
+            </h4>
+        </div>
+        <ul class="nav-links">
+            <li><a href="About.html">關於</a></li>
+            <li><a href="Exhibitions.html">展覽</a></li>
+            <li><a href="OpenCeremony.html">開幕式</a></li>
+            <li><a href="ArtworkSubmission.html">徵稿</a></li>
+            <li><a href="Contact.html">聯絡</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <section class="page-content">
+
+        <div>
+            <input type="text" id="uploadEmail" placeholder="Email"></input>
+            <input type="password" id="uploadPassword" placeholder="Password"></input>
+            <button type="button" onclick="login()">Submit</button>
+        </div>
+
+        <div class="uploads none" id="upload">
+            <form class="uploadForm">
+                <h1>Upload</h1>
+                <input type="text" id="uploadYear" placeholder="Year"></input>
+                <textarea type="text" id="uploadDescription" placeholder="Description"></textarea>
+
+                <div>
+                    <label for="file">Select file:</label>
+                    <input type="file" id="file" name="file" accept="image/*">
+                </div>
+
+                <label for="uploadMainType">(Exhibitions)</label>
+                <input type="text" id="uploadMainType" placeholder="UPLOAD ONTO..."></input>
+                <button type="button" onclick="uploadFile()">Upload File</button>
+
+            </form>
+            <div class="upload-meter">
+                <div class="bar uploadF"></div>
+            </div>
+        </div>
+
+        <div class="uploads none" id="upload">
+            <form class="uploadForm">
+                <h1>Multiple Uploads</h1>
+                <label for="uploadMultipleTitle">(音樂表演, 舞蹈表演, 致辭及頒獎)</label>
+                <input type="text" id="uploadMultipleTitle" placeholder="Title"></input>
+                <input type="text" id="uploadMultipleYear" placeholder="Year"></input>
+                <input type="text" id="uploadMultipleVideoLink" placeholder="Video Link"></input>
+
+
+                <div>
+                    <label for="multipleFile">Select files:</label>
+                    <input type="file" id="multipleFile" name="file" accept="image/*" multiple>
+                </div>
+
+                <div>
+                    <label for="mainFile">Select COVER file:</label>
+                    <input type="file" id="mainFile" name="file" accept="image/*">
+                </div>
+
+                <label for="uploadMultipleMainType">(Exhibitions, OpenCeremony)</label>
+                <input type="text" id="uploadMultipleMainType" placeholder="UPLOAD ONTO..."></input>
+                <button type="button" onclick="uploadMultiple()">Upload Multiple</button>
+
+            </form>
+            <div class="upload-meter">
+                <div class="bar uploadMultipleF"></div>
+            </div>
+            <div id="uploadTextNotice"></div>
+        </div>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </section>
+
+    <!-- Nav Bar-->
+    <div class="footer">
+        <div class="footer-bottom">
+            &copy; hkartgear.art | Designed by Peter Chow
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/7.15.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/slide.js"></script>
+    <script src="js/upload.js"></script>
+</body>
+
+</html>

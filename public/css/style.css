@@ -1,0 +1,664 @@
+:root {
+    font-size: 16px;
+    font-family: 'STHeiti';
+    font-weight: 300;
+    line-height: 1.5;
+    --text-heading: ;
+    --text-subheading: ;
+    --text-secondary: ;
+    --text-primary: ;
+    --bg-primary: whitesmoke;
+    --bg-footer: #343a41;
+    --bg-copyright: whitesmoke;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    background-color: var(--bg-primary);
+    /* background: url(/pics/home.JPG) no-repeat center fixed; */
+    background-size: cover;
+}
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< NAV >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav-links li a:hover {
+    color: red;
+}
+
+.nav-links li {
+    list-style-type: none;
+    padding: 0px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: white;
+    border-bottom: 0.01px solid rgba(167, 164, 164, 0.534);
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.logo h4 {
+
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.logo a {
+    color: black;
+    text-decoration: none;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* #endregion */
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Contents >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.page-content {
+    min-height: 100%;
+}
+
+/* #endregion */
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< PHOTOS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.align {
+    text-align: center;
+}
+
+.row-photo {
+    /* margin: 8px -16px; */
+    /* Create three equal columns that floats next to each other */
+    column-count: 3;
+    text-align: center;
+    width: 70%;
+}
+
+.row-photo,
+.row-photo>.column-photo {
+    padding: 8px;
+    width: 100%;
+    /* margin: auto; */
+}
+
+.column-photo {
+    display: none;
+}
+
+/* Clear floats after rows */
+.row-photo:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.text {
+    background-color: white !important;
+    width: 100%;
+    padding: 25px;
+    margin: 0;
+}
+
+
+.text p {
+    text-align: left;
+}
+
+.text h2 {
+    text-align: left;
+}
+
+.text h5 {
+    text-align: left;
+    font-weight: normal;
+}
+
+.text a {
+    text-align: left;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+    display: block;
+}
+
+#myBtnContainer {
+    float: left;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Style the buttons */
+.btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: var(--bg-primary);
+    cursor: pointer;
+    color: black;
+    font-family: 'Helvetica Neue';
+}
+
+/* Add a grey background color on mouse-over */
+.btn:hover {
+    color: red;
+}
+
+/* Add a dark background color to the active button */
+.btn.active {
+    font-weight: bold;
+}
+
+#productBtn {
+    border: none;
+    transition: all .2s ease-in-out;
+    font-family: 'Helvetica Neue';
+    border: none;
+}
+
+#productBtn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    border: none;
+}
+
+/* #endregion */
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< OPEN CEREMONY >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.ceremony-link-vid {
+    width: 60%;
+}
+
+/* #endregion */
+
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CONTACTS PAGE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+
+.contacts label {
+    display: block;
+    text-align: left;
+}
+
+.contacts input {
+    height: 40px;
+    margin: 4px;
+    padding: 6px 6px;
+    box-sizing: border-box;
+    text-align: left;
+    display: block;
+
+    width: 460px;
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+#subject {
+    width: -webkit-fill-available;
+}
+
+#message {
+    width: -webkit-fill-available;
+    height: 200px;
+}
+
+.contact-button {
+    position: relative;
+    left: 40%;
+    background: red;
+    border: 0;
+    color: #fff;
+    line-height: 1;
+    padding: 12px 30px;
+    border-radius: 0;
+}
+
+.contact-button:hover {
+    cursor: pointer;
+}
+
+.contacts textarea {
+    height: 40px;
+    margin: 4px;
+    padding: 6px 6px;
+    box-sizing: border-box;
+    text-align: left;
+    display: block;
+
+    width: 460px;
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+/* #endregion */
+
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< POST IMAGE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.backButton {
+    padding: 20px 50px;
+}
+
+.backButton button {
+    float: left;
+    border: none;
+    font-size: 30px;
+    background: var(--bg-primary);
+    cursor: pointer;
+}
+
+.none {
+    display: none;
+}
+
+.left {
+    position: static;
+    float: left;
+    margin: 33% 7px;
+    font-size: xx-large;
+    border: none;
+    background-color: var(--bg-primary);
+}
+
+.right {
+    position: static;
+    float: right;
+    margin: 33% 7px;
+    font-size: xx-large;
+    border: none;
+    background-color: var(--bg-primary);
+}
+
+.left:hover {
+    color: var(--bg-footer);
+}
+
+.right:hover {
+    color: var(--bg-footer);
+}
+
+/* #endregion */
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Exhibitions UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+#uploadMultipleText {
+    width: 500px;
+    height: 150px;
+    margin: 10px;
+    border: black;
+}
+
+#uploadMultipleDescription {
+    width: 500px;
+    height: 50px;
+    margin: 10px;
+    border: black;
+}
+
+/* #endregion */
+
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Gallery UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.upload-progress {
+    flex: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-meter {
+    margin-top: 25px;
+    width: 40%;
+    background: grey;
+}
+
+.bar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    background-color: red;
+}
+
+.uploadMultipleF {
+    width: 0%;
+}
+
+.uploadF {
+    width: 0%;
+}
+
+.uploads {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.uploadForm {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: none;
+}
+
+.uploadForm div {
+    width: 40%;
+}
+
+#uploadText {
+    width: 500px;
+    height: 150px;
+    margin: 10px;
+    border: black;
+}
+
+#uploadDescription {
+    width: 500px;
+    height: 50px;
+    margin: 10px;
+    border: black;
+}
+
+.uploadForm input {
+    width: 500px;
+    height: 30px;
+    border: black;
+    margin: 10px;
+}
+
+/* #endregion */
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< FOOTER >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.footer {
+    color: white;
+    position: relative;
+}
+
+.footer .footer-content {
+    border: 1px solid red;
+    height: 350px;
+    display: flex;
+}
+
+.footer .footer-content .footer-section {
+    border: 1px solid white;
+    padding: 25px;
+    flex: 1;
+}
+
+.footer .footer-bottom {
+    background: var(--bg-copyright);
+    color: black;
+    height: 7vh;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-top: 20px;
+}
+
+/*#endregion FOOTER */
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MEDIA SCREEN STUFF >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 50%;
+    padding: 50px;
+}
+
+.about-section {
+    width: 100%;
+    padding: 40px 0;
+}
+
+.inner-width {
+    max-width: 1500px;
+    overflow: hidden;
+    padding: 0 20px;
+    margin: auto;
+}
+
+
+/* midway to small screens */
+@media screen and (max-width:1614px) {
+    .column-photo {
+        width: unset;
+    }
+
+    .nav-links {
+        width: 50%;
+    }
+}
+
+/* midway to small screens */
+@media screen and (max-width:1230px) {
+
+    .left {
+        margin: 0;
+    }
+
+    .right {
+        margin: 0;
+    }
+}
+
+/* midway to small screens */
+@media screen and (max-width:1094px) {
+    .nav-links {
+        width: 60%;
+    }
+
+    .row-photo {
+        column-count: 2;
+    }
+
+}
+
+
+@media screen and (max-width:768px) {
+
+    .ceremony-link-vid {
+        width: 100%;
+    }
+
+    .about-image img {
+        width: 628px;
+        height: 628px;
+    }
+
+}
+
+/* small screens */
+@media screen and (max-width:670px) {
+
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        display: none;
+        background-color: white;
+        opacity: 0.8;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        /* transform: translateX(100%); */
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .burger:hover {
+        opacity: 0.5;
+    }
+
+    .column {
+        flex: 100%;
+        margin: 10px 0;
+    }
+
+    .about-image {
+        padding: 5px;
+    }
+
+    .about-text {
+        padding: 5px;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    embed {
+        width: 400px;
+        height: 400px;
+    }
+
+    iframe {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    .contact-button {
+        position: unset;
+        left: unset;
+    }
+
+    #myBtnContainer {
+        display: unset;
+    }
+
+    .row-photo {
+        column-count: 1;
+    }
+
+    .row-photo,
+    .row-photo>.column-photo {
+        padding: 4px;
+        margin: 0;
+    }
+
+    .content {
+        padding: 0;
+    }
+
+
+}
+
+
+@media screen and (max-width:375px) {
+
+
+    iframe {
+        width: 300px;
+        height: 200px;
+    }
+
+    embed {
+        width: 300px;
+        height: 200px;
+    }
+}
+
+.nav-active {
+    transform: translateX(0%);
+    display: flex;
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+        display: none;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    opacity: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* #endregion */
