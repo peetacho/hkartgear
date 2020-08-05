@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
     <link href="css/all.css" rel="stylesheet">
-    <title>Exhibitions</title>
+    <title>Event</title>
 </head>
 
 <body>
@@ -18,9 +20,8 @@
         </div>
         <ul class="nav-links">
             <li><a href="About.html">關於</a></li>
-            <li><a href="Exhibitions.html" style="font-weight: bold;">展覽</a></li>
-            <li><a href="OpenCeremony.html">開幕式</a></li>
-            <li><a href="ArtworkSubmission.html">徵稿</a></li>
+            <li><a href="Events.html" style="font-weight: bold;">策展項目</a></li>
+            <li><a href="Gallery.html">動力畫廊</a></li>
             <li><a href="Contact.html">聯絡</a></li>
         </ul>
         <div class="burger">
@@ -31,23 +32,41 @@
     </nav>
 
     <section class="page-content">
-        <div id="myBtnContainer">
-            <button class="btn active" onclick="filterSelection('all')">
-                <i class="fas fa-border-all"></i>
-                所有
-            </button>
-            <button class="btn" onclick="filterSelection('2023')">2023</button>
-            <button class="btn" onclick="filterSelection('2021')">2021</button>
-            <button class="btn" onclick="filterSelection('2019')">2019</button>
-            <button class="btn" onclick="filterSelection('2017')">2017</button>
-        </div>
 
-        <!-- Portfolio Gallery Grid -->
-        <div class="align">
-            <div id="row-photo" class="row-photo">
-
+        <div class="about-section" style="padding-top: 10px;">
+            <div class="inner-width">
+                <div class="row">
+                    <div class="column about-text">
+                        <h1 style="padding-top: 23px; text-align: left;">
+                        </h1>
+                        <p style="text-align: left;">
+                            Bless Asia
+                        </p>
+                    </div>
+                    <div class="column about-image">
+                        <img src="pics/About/logo.jpg" width="100%" height="100%">
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="about-section" style="padding-top: 10px;">
+            <div class="inner-width">
+                <div class="row">
+                    <div class="column about-text">
+                        <h1 style="padding-top: 23px; text-align: left;">
+                        </h1>
+                        <p style="text-align: left;">
+                            Splendor Beauty
+                        </p>
+                    </div>
+                    <div class="column about-image">
+                        <img src="pics/About/logo.jpg" width="100%" height="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <br><br><br><br>
     </section>
@@ -66,17 +85,6 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
     <script src="js/firebaseConfig.js"></script>
-    <script>
-        function getImageSrc(Src) {
-            var imageSrc = Src;
-
-            localStorage.setItem("imageSrc", imageSrc);
-
-            console.log('Image Src is set to: ', imageSrc);
-        }
-    </script>
-    <script src="js/create.js"></script>
-    <script src="js/createImage.js"></script>
     <script src="js/next.js"></script>
     <script src="js/slide.js"></script>
 </body>
