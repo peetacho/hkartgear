@@ -3,6 +3,7 @@
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 300;
     line-height: 1.5;
+    color: rgba(47, 47, 47, 1);
     --text-heading: ;
     --text-subheading: ;
     --text-secondary: ;
@@ -25,6 +26,10 @@ body {
     background-color: var(--bg-primary);
     /* background: url(/pics/home.JPG) no-repeat center fixed; */
     background-size: cover;
+}
+
+.bold {
+    font-weight: 400;
 }
 
 /*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< NAV >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
