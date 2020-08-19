@@ -127,6 +127,7 @@ function uploadFile() {
 
 
 function uploadMultiple() {
+    console.log("pressed");
     indexUploaded = 0;
 
     //Listen for file selection
@@ -158,6 +159,11 @@ function uploadMultiple() {
                 console.log('Exhibitions')
                 uploadTheMainType = 'Exhibitions';
                 uploadImageAsPromiseExhibitions(imageFile, uploadMultipleYear, uploadMultipleMainType);
+                break;
+            case 'Events':
+                console.log('Events')
+                uploadTheMainType = 'Events';
+                uploadImageAsPromiseEvents(uploadMultipleTitle, imageFile, i, image.length, uploadMultipleMainType);
                 break;
         }
     }
@@ -253,6 +259,48 @@ function uploadImageAsPromise(mainFile, imageFile, index, uploadMultipleTitle, u
         );
     });
 }
+
+//Handle waiting to upload each file using promise
+function uploadImageAsPromiseEvents(uploadMultipleTitle, imageFile, index, imageLength, uploadMultipleMainType) {
+    return new Promise(function (resolve, reject) {
+        var storageRef = firebase.storage().ref(uploadMultipleMainType.toLowerCase() + '/' + imageFile.name);
+
+        // initialize firestore
+        var firestore = firebase.firestore();
+        const db = firestore.collection(uploadMultipleMainType);
+        var task = storageRef.put(imageFile);
+
+        //Update progress bar
+        task.on('state_changed',
+            function progress(snapshot) {
+
+            },
+            function error(err) {
+                console.log(err);
+            },
+            function () {
+                task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    // console.log('File available at', downloadURL);
+
+                    //Access Database
+                    db.doc(uploadMultipleTitle).set({
+                            [index + 'url']: downloadURL,
+                            imageLength: imageLength
+                        }, {
+                            merge: true
+                        })
+                        .then(function () {
+                            console.log("Data Saved");
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                });
+            }
+        );
+    });
+}
+
 
 function uploadImageAsPromiseExhibitions(imageFile, uploadMultipleYear, uploadMultipleMainType) {
     return new Promise(function (resolve, reject) {

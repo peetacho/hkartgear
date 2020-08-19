@@ -85,13 +85,15 @@
                     <div class="column about-text">
                         <h1 style="padding-top: 23px; text-align: left; margin: 0;">「豐盛國度」兩岸四地基督徒視覺藝術展</h1>
                         <p style="text-align: left;">
-                            於2019年1月在澳門教科文中心的展覽廳舉行，由香港藝術動力策劃。整個藝術展邀請了來自中國內地、台灣、香港和澳門的基督徒藝術家，一起以他們的藝術創意激活了整個澳門基督教藝術圈。 是次藝術展共有50位藝術家參與，各自以不同的藝術媒體來表達自己的世界觀和生命訊息。
+                            於2019年1月在澳門教科文中心的展覽廳舉行，由香港藝術動力策劃。整個藝術展邀請了來自中國內地、台灣、香港和澳門的基督徒
+                            藝術家，一起以他們的藝術創意激活了整個澳門基督教藝術圈。 是次藝術展共有50位藝術家參與，各自以不同的藝術媒體來表達自
+                            己的世界觀和生命訊息。
                         </p>
                     </div>
                     <div class="column about-image">
-                        <a href="https://blessasia.art/" target="_blank">
+                        <button onclick="getTitle('豐盛國度','Events','154')" style="border: none;">
                             <img src="pics/Events/豐盛國度兩岸四地基督徒藝術展.jpeg" width="100%" height="100%" />
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -103,15 +105,17 @@
                     <div class="column about-text">
                         <h1 style="padding-top: 23px; text-align: left; margin: 0;">「6感交集」六人藝術展</h1>
                         <p style="text-align: left;">
-
-                            六位參展者走在一起也可以說是偶然和刻意之間的聚起來，我們都有一個共同意念就是希望在藝術創作中能夠向前走多一步。這是我們作為基督徒藝術家走第二里路的象徵：以藝術為祭把我們的個人生命訊息從藝術作品中表現出來。我們今次這個六人藝術展背後帶着一個很重要的使命和意義：就是透過藝術家的創作希望能夠惠及貧苦大眾。藝術展夥拍了「香港工業福音團契」，我們欣賞他們多年來在香港的貧苦大眾中的服侍。我們盼望透過作品拍賣，扣除最低成本的開支後把拍賣的差額全部捐獻給「工業福音團契」；由他們把這些捐獻投放在關注貧窮的群體上。盼望藝術落地是如此的落實幫助社群，讓受益的人不單只是觀眾，更是觀眾以外的坊眾。
-
+                            六位參展者走在一起也可以說是偶然和刻意之間的聚起來，我們都有一個共同意念就是希望在藝術創作中能夠向前走多一步。
+                            這是我們作為基督徒藝術家走第二里路的象徵：以藝術為祭把我們的個人生命訊息從藝術作品中表現出來。我們今次這個六人
+                            藝術展背後帶着一個很重要的使命和意義：就是透過藝術家的創作希望能夠惠及貧苦大眾。藝術展夥拍了「香港工業福音團契」，
+                            我們欣賞他們多年來在香港的貧苦大眾中的服侍。我們盼望透過作品拍賣，扣除最低成本的開支後把拍賣的差額全部捐獻給「工業
+                            福音團契」；由他們把這些捐獻投放在關注貧窮的群體上。盼望藝術落地是如此的落實幫助社群，讓受益的人不單只是觀眾，更是觀眾以外的坊眾。
                         </p>
                     </div>
                     <div class="column about-image">
-                        <a href="https://blessasia.art/" target="_blank">
+                        <button onclick="getTitle('６ 感交集','Events','94')" style="border: none;">
                             <img src="pics/Events/4.jpeg" width="100%" height="100%" />
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -135,6 +139,23 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
     <script src="js/firebaseConfig.js"></script>
+    <script>
+        function getTitle(Title, CollectionName, ImageLength) {
+            var imageTitle = Title;
+            var imageCollection = CollectionName;
+            var imageLength = ImageLength;
+
+            localStorage.setItem("imageTitle", imageTitle);
+            localStorage.setItem("imageCollection", imageCollection);
+            localStorage.setItem("imageLength", imageLength);
+
+            console.log('Image Title is set to: ', imageTitle);
+            console.log('Image Collection is set to: ', imageCollection);
+            console.log('Image Length is set to: ', imageLength);
+
+            window.location.href = "ImageEvents.html";
+        }
+    </script>
     <script src="js/next.js"></script>
     <script src="js/slide.js"></script>
 </body>

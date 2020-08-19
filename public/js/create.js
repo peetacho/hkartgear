@@ -19,14 +19,14 @@ switch (document.title) {
         collectCeremony();
         //collectGallery();
         break;
-    case 'Exhibitions':
-        console.log('Exhibitions');
-        uploadTheMainType = 'Exhibitions';
-        collectGallery();
+    case 'Events':
+        console.log('Events');
+        uploadTheMainType = 'Events';
+        collectEvents();
         break;
 }
 
-function collectGallery() {
+function collectEvents() {
     const db = firestore.collection(uploadTheMainType);
 
     db.orderBy("year", "asc").get().then(function (querySnapshot) {
@@ -34,7 +34,7 @@ function collectGallery() {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
             var dd = doc.data();
-            createGalDiv(dd.year, dd.description, dd.url, uploadTheMainType);
+            createEventsDiv(dd.year, dd.description, dd.url, uploadTheMainType);
         });
     });
 }
@@ -72,7 +72,7 @@ function collectCeremony() {
 
 }
 
-function createGalDiv(Year, Description, Url, CollectionName) {
+function createEventsDiv(Year, Description, Url, CollectionName) {
     var div = document.createElement('div');
     div.setAttribute('class', `column-photo ${Year} show`);
 
