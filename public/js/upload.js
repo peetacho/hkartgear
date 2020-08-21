@@ -25,109 +25,105 @@ function login() {
         });
 }
 
-function uploadFile() {
+function uploadArtworkSale() {
+    indexUploaded = 0;
 
-    if (!firebase.apps.length) {
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+    //Listen for file selection
+    var image = document.getElementById('uploadArtFile').files;
+    let mainImage = document.getElementById('uploadArtMainFile').files;
+    // console.log(image);
+
+    let uploadArtArtist = document.querySelector('#uploadArtArtist').value;
+    let uploadArtTitle = document.querySelector('#uploadArtTitle').value;
+    let uploadArtMedia = document.querySelector('#uploadArtMedia').value;
+    let uploadArtType = document.querySelector('#uploadArtType').value;
+
+    let uploadArtDescription = document.querySelector('#uploadArtDescription').value;
+
+    let uploadArtPremiumType = document.querySelector('#uploadArtPremiumType').value;
+
+    for (var i = 0; i < image.length; i++) {
+        var imageFile = image[i];
+        var mainFile = mainImage[0];
+        uploadImageAsPromiseArtworkSales(mainFile, imageFile, image.length, i, uploadArtArtist, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType)
     }
+}
 
-    ///////////////////////////////////// Storage ////////////////////////////////////
-    let uploadType = document.querySelector('#uploadMainType').value;
+function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, index, uploadArtArtist, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType) {
+    return new Promise(function (resolve, reject) {
+        var storageRef = firebase.storage().ref(uploadArtPremiumType.toLowerCase() + '/' + imageFile.name);
 
-    var image = document.getElementById('file').files[0];
-    var fileName = image.name;
-    var storageRef = firebase.storage().ref(uploadType + '/' + fileName);
-    var uploadTask = storageRef.put(image);
+        // initialize firestore
+        var firestore = firebase.firestore();
+        const db = firestore.collection(uploadArtPremiumType);
+        var task;
 
-    ///////////////////////////////////// FIRESTORE ////////////////////////////////////
-    var firestore = firebase.firestore();
+        if (index == 0) {
+            //Upload file
+            task = storageRef.put(mainFile);
+        } else {
+            task = storageRef.put(imageFile);
+        }
 
-    // let uploadTitle = document.querySelector('#uploadTitle');
-    // let uploadText = document.querySelector('#uploadText');
-    // let uploadType = document.querySelector('#uploadType');
-    let uploadYear = document.querySelector('#uploadYear');
-    let uploadDescription = document.querySelector('#uploadDescription');
+        //Update progress bar
+        task.on('state_changed',
+            function progress(snapshot) {
+                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                // console.log('Multiple upload is ' + percentage + '% done');
 
-    let uploadMainType = document.querySelector('#uploadMainType');
+                var div = document.getElementsByClassName('uploadMultipleF')[0];
 
-    var uploadTheMainType = '';
+                div.style.width = percentage + '%';
 
-    switch (uploadMainType.value) {
-        case 'OpenCeremony':
-            console.log('OpenCeremony');
-            uploadTheMainType = 'OpenCeremony';
-            break;
-        case 'Exhibitions':
-            console.log('Exhibitions')
-            uploadTheMainType = 'Exhibitions';
-            break;
-    }
+            },
+            function error(err) {
+                console.log(err);
+            },
+            function () {
+                task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    // console.log('File available at', downloadURL);
 
-    const db = firestore.collection(uploadTheMainType);
+                    if (index == 0) {
+                        db.doc(uploadArtArtist + " " + uploadArtTitle).set({
+                                artist: uploadArtArtist,
+                                title: uploadArtTitle,
+                                media: uploadArtMedia,
+                                type: uploadArtType,
+                                description: uploadArtDescription,
+                                mainUrl: downloadURL,
+                                imageLength: imageLength
+                            }, {
+                                merge: true
+                            })
+                            .then(function () {
+                                console.log("Data Saved");
+                                indexUploaded++;
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
 
-    // Listen for state changes, errors, and completion of the upload.
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function (snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            var div = document.getElementsByClassName('uploadF')[0];
-
-            div.style.width = progress + '%';
-        },
-        function (error) {
-
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
-            switch (error.code) {
-                case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    console.log(`User doesn't have permission to access the object`);
-                    break;
-
-                case 'storage/canceled':
-                    // User canceled the upload
-                    console.log(`User canceled the upload`);
-                    break;
-
-                case 'storage/unknown':
-                    // Unknown error occurred, inspect error.serverResponse
-                    console.log(`Unknown error occurred, inspect error.serverResponse`);
-                    break;
+                    //Access Database
+                    db.doc(uploadArtArtist + " " + uploadArtTitle).set({
+                            [index + 'url']: downloadURL
+                        }, {
+                            merge: true
+                        })
+                        .then(function () {
+                            console.log("Data Saved");
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                });
             }
-        },
-        function () {
-            // Upload completed successfully, now we can get the download URL
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-
-                // let galleryUploadTitle = uploadTitle.value;
-                // let galleryUploadText = uploadText.value;
-                // let galleryUploadType = uploadType.value;
-                let galleryYear = uploadYear.value;
-                let galleryUploadDescription = uploadDescription.value;
-
-                //Access Database
-                db.doc().set({
-                        // title: galleryUploadTitle,
-                        // text: galleryUploadText,
-                        // type: galleryUploadType,
-                        year: galleryYear,
-                        url: downloadURL,
-                        description: galleryUploadDescription
-                    })
-                    .then(function () {
-                        console.log("Data Saved");
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            });
-        });
+        );
+    });
 }
 
 
 function uploadMultiple() {
-    console.log("pressed");
     indexUploaded = 0;
 
     //Listen for file selection

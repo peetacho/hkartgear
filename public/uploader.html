@@ -19,10 +19,11 @@
             </h4>
         </div>
         <ul class="nav-links">
-            <li><a href="About.html">關於</a></li>
-            <li><a href="Events.html">策展項目</a></li>
-            <li><a href="Gallery.html">動力畫廊</a></li>
-            <li><a href="Contact.html">聯絡</a></li>
+            <li><a href="About.html">About<br>關於</a></li>
+            <li><a href="Events.html">Events<br>策展項目</a></li>
+            <li><a href="Gallery.html">Gallery<br>藝廊</a></li>
+            <li><a href="Contact.html">Artists<br>藝術家</a></li>
+            <li><a href="Contact.html">Contact<br>聯絡</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -32,7 +33,6 @@
     </nav>
 
     <section class="page-content">
-
         <div>
             <input type="text" id="uploadEmail" placeholder="Email"></input>
             <input type="password" id="uploadPassword" placeholder="Password"></input>
@@ -41,33 +41,12 @@
 
         <div class="uploads none" id="upload">
             <form class="uploadForm">
-                <h1>Upload</h1>
-                <input type="text" id="uploadYear" placeholder="Year"></input>
-                <textarea type="text" id="uploadDescription" placeholder="Description"></textarea>
 
-                <div>
-                    <label for="file">Select file:</label>
-                    <input type="file" id="file" name="file" accept="image/*">
-                </div>
 
-                <label for="uploadMainType">(Exhibitions)</label>
-                <input type="text" id="uploadMainType" placeholder="UPLOAD ONTO..."></input>
-                <button type="button" onclick="uploadFile()">Upload File</button>
-
-            </form>
-            <div class="upload-meter">
-                <div class="bar uploadF"></div>
-            </div>
-        </div>
-
-        <div class="uploads none" id="upload">
-            <form class="uploadForm">
                 <h1>Multiple Uploads</h1>
-                <label for="uploadMultipleTitle">(音樂表演, 舞蹈表演, 致辭及頒獎)</label>
-                <input type="text" id="uploadMultipleTitle" placeholder="Title"></input>
-                <input type="text" id="uploadMultipleYear" placeholder="Year"></input>
-                <input type="text" id="uploadMultipleVideoLink" placeholder="Video Link"></input>
 
+
+                <input type="text" id="uploadMultipleTitle" placeholder="Title"></input>
 
                 <div>
                     <label for="multipleFile">Select files:</label>
@@ -79,9 +58,50 @@
                     <input type="file" id="mainFile" name="file" accept="image/*">
                 </div>
 
-                <label for="uploadMultipleMainType">(Exhibitions, OpenCeremony, Events)</label>
+                <label for="uploadMultipleMainType">(Events)</label>
                 <input type="text" id="uploadMultipleMainType" placeholder="UPLOAD ONTO..."></input>
                 <button type="button" onclick="uploadMultiple()">Upload Multiple</button>
+
+            </form>
+            <div class="upload-meter">
+                <div class="bar uploadMultipleF"></div>
+            </div>
+            <div id="uploadTextNotice"></div>
+        </div>
+
+        <div class="uploads none" id="upload">
+            <form class="uploadForm">
+
+
+                <h1>Uploads For Artwork Sales</h1>
+
+
+                <input type="text" id="uploadArtArtist" placeholder="Artist"></input>
+                <input type="text" id="uploadArtTitle" placeholder="Title"></input>
+                <input type="text" id="uploadArtMedia" placeholder="Media"></input>
+
+
+                <label for="uploadArtType">(Oil / Acrylic painting 油畫及塑料彩, Water painting 水彩畫, Chinese Ink 中國水墨, Print /
+                    photography
+                    版畫/攝影, Sculpture / Installation 雕塑及裝置) </label>
+                <input type="text" id="uploadArtType" placeholder="Type"></input>
+
+                <label for="uploadArtDescription">Add &lt;br&gt; to indent line</label>
+                <textarea type="text" id="uploadArtDescription" placeholder="Description"></textarea>
+
+                <div>
+                    <label for="uploadArtFile">Select files:</label>
+                    <input type="file" id="uploadArtFile" name="file" accept="image/*" multiple>
+                </div>
+
+                <div>
+                    <label for="uploadArtMainFile">Select COVER file:</label>
+                    <input type="file" id="uploadArtMainFile" name="file" accept="image/*">
+                </div>
+
+                <label for="uploadArtPremiumType">(Premium Sales, Artwork Sales)</label>
+                <input type="text" id="uploadArtPremiumType" placeholder="UPLOAD ONTO..."></input>
+                <button type="button" onclick="uploadArtworkSale()">Upload For Artwork Sales</button>
 
             </form>
             <div class="upload-meter">

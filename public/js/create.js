@@ -8,16 +8,15 @@ var firestore = firebase.firestore();
 var uploadTheMainType = '';
 
 switch (document.title) {
+    case 'Artwork Sales':
+        console.log('Artwork Sales');
+        uploadTheMainType = 'Artwork Sales';
+        collectArtwork();
+        break;
     case 'About':
         console.log('Venue');
         uploadTheMainType = 'Venue';
         collectExhibitions();
-        break;
-    case 'OpenCeremony':
-        console.log('OpenCeremony');
-        uploadTheMainType = 'OpenCeremony';
-        collectCeremony();
-        //collectGallery();
         break;
     case 'Events':
         console.log('Events');
@@ -39,17 +38,17 @@ function collectEvents() {
     });
 }
 
-function collectExhibitions() {
+function collectArtwork() {
     const db = firestore.collection(uploadTheMainType);
 
-    db.orderBy("year", "asc").get().then(function (querySnapshot) {
+    db.get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
             var dd = doc.data();
 
             // type is year
-            createExhDiv(dd.title, dd.year, dd.type, dd.description, dd['0url'], uploadTheMainType, dd.imageLength);
+            createArtworkDiv(dd.artist, dd.title, dd.media, dd.type, dd.description, dd.mainUrl, uploadTheMainType, dd.imageLength);
         });
     });
 
@@ -111,21 +110,23 @@ function getTitle(Title, CollectionName) {
     console.log('Image Collection is set to: ', imageCollection);
 }
 
-function createExhDiv(Title, Year, Type, Description, Url, CollectionName, ImageLength) {
+function createArtworkDiv(Artist, Title, Media, Type, Description, MainUrl, UploadTheMainType, ImageLength) {
     var div = document.createElement('div');
     div.setAttribute('class', `column-photo ${Type} show`);
 
     var newDiv =
         `
             <div class="content">
-            <button class="content-text" id="productBtn" onClick="getTitle('${Title}','${CollectionName}','${ImageLength}')">
-            <a href="ImageExhibitions.html" style="text-decoration: none; color: black;">
-                <img src="${Url}">
+            <button class="content-text" id="productBtn" onClick="getTitle('${Title}','${Artist}','${UploadTheMainType}','${ImageLength}')">
+            <a href="ImageArtworkSales.html" style="text-decoration: none; color: black;">
+                <img src="${MainUrl}" 
+                style="width: 100% !important;    
+                height: auto !important; ">
                 <div class="content-text text">
-                    <h2>${Title}</h2>
-                    <h5>${Year}</h5>
+                    <h2>藝術家： ${Artist}</h2>
+                    <h4 style="text-align: left;">題目： ${Title}</h4>
                     <p>
-                        ${Description}
+                        ${Media}
                     </p>
                 </div>
             </a>
@@ -138,16 +139,19 @@ function createExhDiv(Title, Year, Type, Description, Url, CollectionName, Image
 
 }
 
-function getTitle(Title, CollectionName, ImageLength) {
+function getTitle(Title, Artist, CollectionName, ImageLength) {
     var imageTitle = Title;
+    var imageArtist = Artist;
     var imageCollection = CollectionName;
     var imageLength = ImageLength;
 
     localStorage.setItem("imageTitle", imageTitle);
+    localStorage.setItem("imageArtist", imageArtist);
     localStorage.setItem("imageCollection", imageCollection);
     localStorage.setItem("imageLength", imageLength);
 
     console.log('Image Title is set to: ', imageTitle);
+    console.log('Image Artist is set to: ', imageArtist);
     console.log('Image Collection is set to: ', imageCollection);
     console.log('Image length is set to: ', imageLength);
 }

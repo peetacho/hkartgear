@@ -19,10 +19,11 @@
             </h4>
         </div>
         <ul class="nav-links">
-            <li><a href="About.html">關於</a></li>
-            <li><a href="Events.html">策展項目</a></li>
-            <li><a href="Gallery.html" style="font-weight: bold;">動力畫廊</a></li>
-            <li><a href="Contact.html">聯絡</a></li>
+            <li><a href="About.html">About<br>關於</a></li>
+            <li><a href="Events.html">Events<br>策展項目</a></li>
+            <li><a href="Gallery.html" style="font-weight:bold">Gallery<br>藝廊</a></li>
+            <li><a href="Contact.html">Artists<br>藝術家</a></li>
+            <li><a href="Contact.html">Contact<br>聯絡</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -32,21 +33,47 @@
     </nav>
 
     <section class="page-content">
-        <div id="myBtnContainer">
-            <button class="btn active" onclick="filterSelection('all')">
-                <i class="fas fa-border-all"></i>
-                所有
-            </button>
-            <button class="btn" onclick="filterSelection('2023')">2023</button>
-            <button class="btn" onclick="filterSelection('2021')">2021</button>
-            <button class="btn" onclick="filterSelection('2019')">2019</button>
-            <button class="btn" onclick="filterSelection('2017')">2017</button>
-        </div>
-        <br><br>
+        <br>
+        <br><br><br>
         <!-- Portfolio Gallery Grid -->
         <div class="align">
-            <div id="row-photo" class="row-photo" style="column-count:unset;">
+            <div id="row-photo" class="row-photo" style="column-count:2;width: 60%;column-gap: 150px;">
+                <div class="column-photo show">
 
+                    <div class="content">
+
+                        <a href="ArtworkSales.html" style="text-decoration: none; color: black;">
+                            <img src="pics/Gallery/Art Pieces Sales icon.jpg" style=" width: 100% !important;    
+                                height: auto !important; ">
+                        </a>
+                    </div>
+                    <div class="">
+                        <h1 style="padding-top: 23px; text-align: left;">
+                            Art Pieces Sales 藝術品售賣
+                        </h1>
+                        <p style="text-align: left;">
+                            esonfowengowen
+                        </p>
+                    </div>
+                </div>
+                <div class="column-photo show">
+
+                    <div class="content">
+
+                        <a href="ArtworkSales.html" style="text-decoration: none; color: black;">
+                            <img src="pics/Gallery/Premiums Sales icon.jpg" style=" width: 100% !important;    
+                                height: auto !important; ">
+                        </a>
+                    </div>
+                    <div class="">
+                        <h1 style="padding-top: 23px; text-align: left;">
+                            Premium Sales 精品售賣
+                        </h1>
+                        <p style="text-align: left;">
+                            esonfowengowen
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 

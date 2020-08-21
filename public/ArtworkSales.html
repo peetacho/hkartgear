@@ -8,7 +8,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
     <link href="css/all.css" rel="stylesheet">
-    <title></title>
+    <title>Artwork Sales</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         <ul class="nav-links">
             <li><a href="About.html">About<br>關於</a></li>
             <li><a href="Events.html">Events<br>策展項目</a></li>
-            <li><a href="Gallery.html">Gallery<br>藝廊</a></li>
+            <li><a href="Gallery.html" style="font-weight:bold">Gallery<br>藝廊</a></li>
             <li><a href="Contact.html">Artists<br>藝術家</a></li>
             <li><a href="Contact.html">Contact<br>聯絡</a></li>
         </ul>
@@ -33,17 +33,31 @@
     </nav>
 
     <section class="page-content">
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')">
+                <i class="fas fa-border-all"></i>
+                所有
+            </button>
+            <button class="btn" onclick="filterSelection('Oil / Acrylic painting  油畫及塑料彩')">Oil / Acrylic painting
+                油畫及塑料彩</button>
+            <button class="btn" onclick="filterSelection('Water painting 水彩畫')">Water painting 水彩畫</button>
+            <button class="btn" onclick="filterSelection('Chinese Ink 中國水墨')">Chinese Ink 中國水墨</button>
+            <button class="btn" onclick="filterSelection('Print / photography 版畫/攝影')">Print / photography
+                版畫/攝影</button>
+            <button class="btn" onclick="filterSelection('Sculpture / Installation 雕塑及裝置')">Sculpture / Installation
+                雕塑及裝置</button>
+        </div>
+        <br>
+        <br>
+        <!-- Portfolio Gallery Grid -->
         <div class="align">
-            <div class="backButton">
-                <button onclick="history.back()">
-                    <</button> </div> <br>
-                        <br>
-                        <div id="imagePost">
+            <div id="row-photo" class="row-photo">
 
 
-                        </div>
             </div>
+        </div>
     </section>
+    <br><br><br><br><br>
 
     <!-- Nav Bar-->
     <div class="footer">
@@ -61,24 +75,8 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
     <script src="js/firebaseConfig.js"></script>
-    <script>
-        createFullImage();
-
-        function createFullImage() {
-            var imageSrc = localStorage.getItem("imageSrc");
-            var div = document.createElement('div');
-
-
-            var newDiv =
-                `
-                    <img src="${imageSrc}" width="80%" height="80%">
-                    `;
-
-            div.innerHTML = newDiv;
-            document.getElementById('imagePost').prepend(div);
-        }
-    </script>
-    <script src="js/nextExhibit.js"></script>
+    <script src="js/create.js"></script>
+    <script src="js/next.js"></script>
     <script src="js/slide.js"></script>
 </body>
 

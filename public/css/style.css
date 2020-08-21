@@ -346,6 +346,12 @@ nav {
 
 /* #endregion */
 
+.last-page {
+    column-count: 2;
+    width: 60%;
+    column-gap: 150px;
+}
+
 
 /*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Gallery UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 .upload-progress {
@@ -509,7 +515,8 @@ nav {
     }
 
     .row-photo {
-        column-count: 2;
+        column-count: 2 !important;
+        width: 100% !important;
     }
 
 }
@@ -605,7 +612,8 @@ nav {
     }
 
     .row-photo {
-        column-count: 1;
+        column-count: 1 !important;
+        width: 100% !important;
     }
 
     .row-photo,
