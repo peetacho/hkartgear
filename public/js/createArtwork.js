@@ -23,7 +23,7 @@ function getImageArtwork() {
 
         for (var i = 0; i < dd.imageLength; i++) {
 
-            createLastPageImages(dd[i + 'url'], imageCollection);
+            createLastPageImages(dd[i + 'url'], imageCollection, i + 'url');
         }
         createLastPageDescription(dd.artist, dd.title, dd.media, dd.description);
 
@@ -33,7 +33,7 @@ function getImageArtwork() {
 }
 
 // creates the images to the right of the last page
-function createLastPageImages(Url, Collection) {
+function createLastPageImages(Url, Collection, indexUrl) {
 
     var div = document.createElement('div');
     div.setAttribute('class', `column-photo show`);
@@ -43,7 +43,7 @@ function createLastPageImages(Url, Collection) {
         <div class="content">
         <button class="content-text" id="productBtn" onClick="getImageSrc('${Url}','${Collection}')">
         <a href="Image.html" style="text-decoration: none; color: black;">
-            <img src="${Url}" 
+            <img src="${Url}" id="${indexUrl}"
             style="width: 100% !important;    
             height: auto !important; ">
         </a>

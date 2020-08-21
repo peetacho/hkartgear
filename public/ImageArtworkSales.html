@@ -43,23 +43,14 @@
                             <div class="inner-width">
                                 <div class="row">
                                     <div class="column about-text">
-
                                         <div id="last-page-description"></div>
                                     </div>
                                     <div class="column about-text">
-
                                         <div id="last-page-photos"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-                        <!-- <div class="last-page">
-                            <div id="last-page-description"></div>
-                            <div id="last-page-photos"></div>
-                        </div> -->
             </div>
     </section>
 
@@ -79,6 +70,15 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
     <script src="js/firebaseConfig.js"></script>
+    <script>
+        function getImageSrc(Src) {
+            var imageSrc = Src;
+
+            localStorage.setItem("imageSrc", imageSrc);
+
+            console.log('Image Src is set to: ', imageSrc);
+        }
+    </script>
     <script src="js/createArtwork.js"></script>
     <script src="js/slide.js"></script>
 </body>
