@@ -369,12 +369,48 @@ nav {
 
 /* #endregion */
 
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ARTWORK && LAST PAGE UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+
+.artwork-create-div p {
+    text-align: left;
+    font-weight: bold;
+}
+
+.artwork-create-div span {
+    font-weight: 400;
+}
+
+
 .last-page {
     column-count: 2;
     width: 60%;
     column-gap: 150px;
 }
 
+/* #endregion */
+
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ARTWORK && LAST PAGE UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.artists {
+    width: 35%;
+}
+
+.artists h4 {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.artists-country-div {
+    border-bottom: 1px solid black;
+}
+
+.artists-country-div-inner {
+
+    margin: 20px 0px;
+}
+
+/* #endregion */
 
 /*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Gallery UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 .upload-progress {

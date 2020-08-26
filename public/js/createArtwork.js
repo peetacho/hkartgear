@@ -7,10 +7,18 @@ if (!firebase.apps.length) {
 
 var firestore = firebase.firestore();
 
-var imageTitle = localStorage.getItem("imageTitle")
-var imageArtist = localStorage.getItem("imageArtist")
-var imageCollection = localStorage.getItem("imageCollection")
-var imageLength = localStorage.getItem("imageLength")
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+var imageTitle = urlParams.get("imageTitle")
+var imageArtist = urlParams.get("imageArtist")
+var imageCollection = urlParams.get("imageCollection")
+var imageLength = urlParams.get("imageLength")
+// var imageTitle = localStorage.getItem("imageTitle")
+// var imageArtist = localStorage.getItem("imageArtist")
+// var imageCollection = localStorage.getItem("imageCollection")
+// var imageLength = localStorage.getItem("imageLength")
 
 getImageArtwork();
 
@@ -25,7 +33,7 @@ function getImageArtwork() {
 
             createLastPageImages(dd[i + 'url'], imageCollection, i + 'url');
         }
-        createLastPageDescription(dd.artist, dd.title, dd.media, dd.description, dd.artistLink);
+        createLastPageDescription(dd.artist, dd.country, dd.title, dd.media, dd.description, dd.artistLink, dd.dimension, dd.price);
 
     }).catch(function (error) {
         console.log("Error getting document:", error);
@@ -58,18 +66,21 @@ function createLastPageImages(Url, Collection, indexUrl) {
 }
 
 // creates the description to the left of the last page
-function createLastPageDescription(Artist, Title, Media, Description, ArtistLink) {
+function createLastPageDescription(Artist, Country, Title, Media, Description, ArtistLink, Dimension, Price) {
 
     var div = document.createElement('div');
     div.setAttribute('class', `content-text text`);
 
     var newDiv = `
-    
-        <h2>藝術家： <a href="${ArtistLink}">${Artist}</a></h2>
-        <h4 style="text-align: left;">題目： ${Title}</h4>
-        <p>
-            ${Media}
-        </p>
+        <div class="artwork-create-div">
+            <h2>藝術家 Artist：<a href="${ArtistLink}">${Artist}</a> </h2>
+            <p>地區 Region：<span>${Country}</span> </p>
+            <p>題目 Title：<span>${Title}</span></p>
+            <p>媒體 Media：<span>${Media}</span></p>
+            <p>尺碼 Dimensions：<span>${Dimension}</span></p>
+            <p>賣價 Price: <span>${Price}</span></p>
+        </div>
+        <br>
         <p>
             ${Description}
         </p>

@@ -22,7 +22,7 @@
             <li><a href="About.html">About<br>關於</a></li>
             <li><a href="Events.html">Events<br>策展項目</a></li>
             <li><a href="Gallery.html">Gallery<br>藝廊</a></li>
-            <li><a href="Contact.html">Artists<br>藝術家</a></li>
+            <li><a href="Artists.html">Artists<br>藝術家</a></li>
             <li><a href="Contact.html">Contact<br>聯絡</a></li>
         </ul>
         <div class="burger">
@@ -81,6 +81,7 @@
                 <input type="text" id="uploadArtArtistLink" placeholder="Artist Link"></input>
                 <input type="text" id="uploadArtTitle" placeholder="Title"></input>
                 <input type="text" id="uploadArtMedia" placeholder="Media"></input>
+                <input type="text" id="uploadArtDimension" placeholder="Dimension"></input>
                 <input type="text" id="uploadArtPrice" placeholder="Price"></input>
 
                 <label for="uploadArtType">(Oil / Acrylic painting 油畫及塑料彩, Water Painting 水彩畫, Chinese Ink 中國水墨, Print /
@@ -110,6 +111,28 @@
                 <div class="bar uploadMultipleF"></div>
             </div>
             <div id="uploadTextNotice"></div>
+        </div>
+
+        <div class="uploads none" id="upload">
+            <form class="uploadForm">
+
+                <h1>Uploads For Artist</h1>
+
+                <input type="text" id="uploadArtist" placeholder="Artist"></input>
+                <label for="uploadArtistCountry"> () </label>
+                <input type="text" id="uploadArtistCountry" placeholder="Country"></input>
+
+                <label for="uploadArtistDescription">Add &lt;br&gt; to indent line</label>
+                <textarea type="text" id="uploadArtistDescription" placeholder="Description"></textarea>
+
+                <div>
+                    <label for="uploadArtistFile">Select files:</label>
+                    <input type="file" id="uploadArtistFile" name="file" accept="image/*" multiple>
+                </div>
+
+                <button type="button" onclick="uploadArtistEntry()">Upload For Artist</button>
+
+            </form>
         </div>
 
 

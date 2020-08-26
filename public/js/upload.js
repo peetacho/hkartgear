@@ -38,6 +38,7 @@ function uploadArtworkSale() {
     let uploadArtArtistLink = document.querySelector('#uploadArtArtistLink').value;
     let uploadArtTitle = document.querySelector('#uploadArtTitle').value;
     let uploadArtMedia = document.querySelector('#uploadArtMedia').value;
+    let uploadArtDimension = document.querySelector('#uploadArtDimension').value;
     let uploadArtType = document.querySelector('#uploadArtType').value;
     let uploadArtPrice = document.querySelector('#uploadArtPrice').value;
 
@@ -48,11 +49,11 @@ function uploadArtworkSale() {
     for (var i = 0; i < image.length; i++) {
         var imageFile = image[i];
         var mainFile = mainImage[0];
-        uploadImageAsPromiseArtworkSales(mainFile, imageFile, image.length, i, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice)
+        uploadImageAsPromiseArtworkSales(mainFile, imageFile, image.length, i, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtDimension, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice)
     }
 }
 
-function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, index, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice) {
+function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, index, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtDimension, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice) {
     return new Promise(function (resolve, reject) {
         var storageRef = firebase.storage().ref(uploadArtPremiumType.toLowerCase() + '/' + imageFile.name);
 
@@ -95,6 +96,7 @@ function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, inde
                                 artistLink: uploadArtArtistLink,
                                 title: uploadArtTitle,
                                 media: uploadArtMedia,
+                                dimension: uploadArtDimension,
                                 description: uploadArtDescription,
                                 type: uploadArtType,
                                 price: uploadArtPrice
@@ -128,6 +130,76 @@ function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, inde
     });
 }
 
+function uploadArtistEntry() {
+    console.log("pressed")
+    var image = document.getElementById('uploadArtistFile').files;
+
+    let uploadArtistArtist = document.querySelector('#uploadArtist').value;
+    let uploadArtistCountry = document.querySelector('#uploadArtistCountry').value;
+    let uploadArtistDescription = document.querySelector('#uploadArtistDescription').value;
+
+    for (var i = 0; i < image.length; i++) {
+        var imageFile = image[i];
+
+        uploadImageAsPromiseArtist(imageFile, image.length, i, uploadArtistArtist, uploadArtistCountry, uploadArtistDescription)
+    }
+
+}
+
+function uploadImageAsPromiseArtist(imageFile, imageLength, index, uploadArtistArtist, uploadArtistCountry, uploadArtistDescription) {
+    return new Promise(function (resolve, reject) {
+        var storageRef = firebase.storage().ref('artists/' + imageFile.name);
+
+        // initialize firestore
+        var firestore = firebase.firestore();
+        const db = firestore.collection("artists");
+        var task = storageRef.put(imageFile);
+
+        //Update progress bar
+        task.on('state_changed',
+            function progress(snapshot) {},
+            function error(err) {
+                console.log(err);
+            },
+            function () {
+                task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    // console.log('File available at', downloadURL);
+
+                    if (index == 0) {
+                        db.doc(uploadArtistArtist).set({
+                                [index + 'url']: downloadURL,
+                                imageLength: imageLength,
+                                artist: uploadArtistArtist,
+                                country: uploadArtistCountry,
+                                description: uploadArtistDescription
+                            }, {
+                                merge: true
+                            })
+                            .then(function () {
+                                console.log("Data Saved");
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+
+                    //Access Database
+                    db.doc(uploadArtistArtist).set({
+                            [index + 'url']: downloadURL
+                        }, {
+                            merge: true
+                        })
+                        .then(function () {
+                            console.log("Data Saved");
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                });
+            }
+        );
+    });
+}
 
 function uploadMultiple() {
     indexUploaded = 0;
@@ -141,27 +213,12 @@ function uploadMultiple() {
     let uploadMultipleYear = document.querySelector('#uploadMultipleYear').value;
     let uploadMultipleVideoLink = document.querySelector('#uploadMultipleVideoLink').value;
 
-    // let uploadMultipleType = document.querySelector('#uploadMultipleType').value;
-    // let uploadMultipleDescription = document.querySelector('#uploadMultipleDescription').value;
-    // let uploadMultipleText = document.querySelector('#uploadMultipleText').value;
-
     let uploadMultipleMainType = document.querySelector('#uploadMultipleMainType').value;
 
     for (var i = 0; i < image.length; i++) {
         var imageFile = image[i];
 
         switch (uploadMultipleMainType) {
-            case 'OpenCeremony':
-                var mainFile = mainImage[0];
-                console.log('OpenCeremony');
-                uploadTheMainType = 'OpenCeremony';
-                uploadImageAsPromise(mainFile, imageFile, i, uploadMultipleTitle, uploadMultipleYear, image.length, uploadMultipleVideoLink, uploadMultipleMainType);
-                break;
-            case 'Exhibitions':
-                console.log('Exhibitions')
-                uploadTheMainType = 'Exhibitions';
-                uploadImageAsPromiseExhibitions(imageFile, uploadMultipleYear, uploadMultipleMainType);
-                break;
             case 'Events':
                 console.log('Events')
                 uploadTheMainType = 'Events';
@@ -172,95 +229,6 @@ function uploadMultiple() {
 }
 
 var indexUploaded;
-
-//Handle waiting to upload each file using promise
-function uploadImageAsPromise(mainFile, imageFile, index, uploadMultipleTitle, uploadMultipleYear, imageLength, uploadMultipleVideoLink, uploadMultipleMainType) {
-    return new Promise(function (resolve, reject) {
-        var storageRef = firebase.storage().ref(uploadMultipleMainType.toLowerCase() + '/' + imageFile.name);
-
-        // initialize firestore
-        var firestore = firebase.firestore();
-        const db = firestore.collection(uploadMultipleMainType);
-        var task;
-
-        if (index == 0) {
-            //Upload file
-            task = storageRef.put(mainFile);
-        } else {
-            task = storageRef.put(imageFile);
-        }
-
-        //Update progress bar
-        task.on('state_changed',
-            function progress(snapshot) {
-                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-                // console.log('Multiple upload is ' + percentage + '% done');
-
-                var div = document.getElementsByClassName('uploadMultipleF')[0];
-
-                div.style.width = percentage + '%';
-
-            },
-            function error(err) {
-                console.log(err);
-            },
-            function () {
-                task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                    // console.log('File available at', downloadURL);
-
-                    if (index == 0) {
-                        db.doc(uploadMultipleYear + " " + uploadMultipleTitle).set({
-                                title: uploadMultipleTitle,
-                                year: uploadMultipleYear,
-                                mainUrl: downloadURL,
-                                linkVid: uploadMultipleVideoLink,
-                                imageLength: imageLength
-                            }, {
-                                merge: true
-                            })
-                            .then(function () {
-                                console.log("Data Saved");
-                                indexUploaded++;
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            });
-                    }
-
-                    //Access Database
-                    db.doc(uploadMultipleYear + " " + uploadMultipleTitle).set({
-                            [index + 'url']: downloadURL
-                        }, {
-                            merge: true
-                        })
-                        .then(function () {
-                            console.log("Data Saved");
-                            indexUploaded++;
-
-                            var div = document.createElement('div');
-
-                            console.log("indexUploaded: " + indexUploaded);
-                            console.log("imageLength: " + imageLength);
-                            var progressSaved = ((indexUploaded - 1) / (imageLength)) * 100;
-                            console.log("progressSaved: " + progressSaved);
-
-                            var newDiv =
-                                `
-                                <p> ${progressSaved}% DONE! </p
-                        
-                                    `;
-
-                            div.innerHTML = newDiv;
-                            document.getElementById('uploadTextNotice').prepend(div);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                });
-            }
-        );
-    });
-}
 
 //Handle waiting to upload each file using promise
 function uploadImageAsPromiseEvents(uploadMultipleTitle, imageFile, index, imageLength, uploadMultipleMainType) {
@@ -297,55 +265,6 @@ function uploadImageAsPromiseEvents(uploadMultipleTitle, imageFile, index, image
                         .catch(function (error) {
                             console.log(error);
                         });
-                });
-            }
-        );
-    });
-}
-
-
-function uploadImageAsPromiseExhibitions(imageFile, uploadMultipleYear, uploadMultipleMainType) {
-    return new Promise(function (resolve, reject) {
-        var storageRef = firebase.storage().ref('exhibitions/' + imageFile.name);
-
-        // initialize firestore
-        var firestore = firebase.firestore();
-        const db = firestore.collection(uploadMultipleMainType);
-
-        var task = storageRef.put(imageFile);
-
-        //Update progress bar
-        task.on('state_changed',
-            function progress(snapshot) {
-                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-                // console.log('Multiple upload is ' + percentage + '% done');
-
-                var div = document.getElementsByClassName('uploadMultipleF')[0];
-
-                div.style.width = percentage + '%';
-
-            },
-            function error(err) {
-                console.log(err);
-            },
-            function () {
-                task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                    // console.log('File available at', downloadURL);
-                    db.doc().set({
-                            year: uploadMultipleYear,
-                            url: downloadURL,
-                            description: "",
-                        }, {
-                            merge: true
-                        })
-                        .then(function () {
-                            console.log("Data Saved");
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-
-
                 });
             }
         );
