@@ -34,9 +34,12 @@ function uploadArtworkSale() {
     // console.log(image);
 
     let uploadArtArtist = document.querySelector('#uploadArtArtist').value;
+    let uploadArtCountry = document.querySelector('#uploadArtCountry').value;
+    let uploadArtArtistLink = document.querySelector('#uploadArtArtistLink').value;
     let uploadArtTitle = document.querySelector('#uploadArtTitle').value;
     let uploadArtMedia = document.querySelector('#uploadArtMedia').value;
     let uploadArtType = document.querySelector('#uploadArtType').value;
+    let uploadArtPrice = document.querySelector('#uploadArtPrice').value;
 
     let uploadArtDescription = document.querySelector('#uploadArtDescription').value;
 
@@ -45,11 +48,11 @@ function uploadArtworkSale() {
     for (var i = 0; i < image.length; i++) {
         var imageFile = image[i];
         var mainFile = mainImage[0];
-        uploadImageAsPromiseArtworkSales(mainFile, imageFile, image.length, i, uploadArtArtist, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType)
+        uploadImageAsPromiseArtworkSales(mainFile, imageFile, image.length, i, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice)
     }
 }
 
-function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, index, uploadArtArtist, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType) {
+function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, index, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice) {
     return new Promise(function (resolve, reject) {
         var storageRef = firebase.storage().ref(uploadArtPremiumType.toLowerCase() + '/' + imageFile.name);
 
@@ -85,13 +88,16 @@ function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, inde
 
                     if (index == 0) {
                         db.doc(uploadArtArtist + " " + uploadArtTitle).set({
+                                mainUrl: downloadURL,
+                                imageLength: imageLength,
                                 artist: uploadArtArtist,
+                                country: uploadArtCountry,
+                                artistLink: uploadArtArtistLink,
                                 title: uploadArtTitle,
                                 media: uploadArtMedia,
-                                type: uploadArtType,
                                 description: uploadArtDescription,
-                                mainUrl: downloadURL,
-                                imageLength: imageLength
+                                type: uploadArtType,
+                                price: uploadArtPrice
                             }, {
                                 merge: true
                             })

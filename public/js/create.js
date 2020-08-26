@@ -48,7 +48,7 @@ function collectArtwork() {
             var dd = doc.data();
 
             // type is year
-            createArtworkDiv(dd.artist, dd.title, dd.media, dd.type, dd.description, dd.mainUrl, uploadTheMainType, dd.imageLength);
+            createArtworkDiv(dd.artist, dd.title, dd.media, dd.type, dd.description, dd.mainUrl, uploadTheMainType, dd.imageLength, dd.price, dd.artistLink);
         });
     });
 
@@ -110,7 +110,7 @@ function getTitle(Title, CollectionName) {
     console.log('Image Collection is set to: ', imageCollection);
 }
 
-function createArtworkDiv(Artist, Title, Media, Type, Description, MainUrl, UploadTheMainType, ImageLength) {
+function createArtworkDiv(Artist, Title, Media, Type, Description, MainUrl, UploadTheMainType, ImageLength, Price, ArtistLink) {
     var div = document.createElement('div');
     div.setAttribute('class', `column-photo ${Type} show`);
 
@@ -123,11 +123,12 @@ function createArtworkDiv(Artist, Title, Media, Type, Description, MainUrl, Uplo
                 style="width: 100% !important;    
                 height: auto !important; ">
                 <div class="content-text text">
-                    <h2>藝術家： ${Artist}</h2>
+                    <h2>藝術家：${Artist}</h2>
                     <h4 style="text-align: left;">題目： ${Title}</h4>
                     <p>
                         ${Media}
                     </p>
+                    <h4 style="font-weight:bold; text-align: left;">賣價 Price: ${Price}</h4>
                 </div>
             </a>
             </button>

@@ -25,7 +25,7 @@ function getImageArtwork() {
 
             createLastPageImages(dd[i + 'url'], imageCollection, i + 'url');
         }
-        createLastPageDescription(dd.artist, dd.title, dd.media, dd.description);
+        createLastPageDescription(dd.artist, dd.title, dd.media, dd.description, dd.artistLink);
 
     }).catch(function (error) {
         console.log("Error getting document:", error);
@@ -58,14 +58,14 @@ function createLastPageImages(Url, Collection, indexUrl) {
 }
 
 // creates the description to the left of the last page
-function createLastPageDescription(Artist, Title, Media, Description) {
+function createLastPageDescription(Artist, Title, Media, Description, ArtistLink) {
 
     var div = document.createElement('div');
     div.setAttribute('class', `content-text text`);
 
     var newDiv = `
     
-        <h2>藝術家： ${Artist}</h2>
+        <h2>藝術家： <a href="${ArtistLink}">${Artist}</a></h2>
         <h4 style="text-align: left;">題目： ${Title}</h4>
         <p>
             ${Media}
