@@ -35,7 +35,6 @@ function uploadArtworkSale() {
 
     let uploadArtArtist = document.querySelector('#uploadArtArtist').value;
     let uploadArtCountry = document.querySelector('#uploadArtCountry').value;
-    let uploadArtArtistLink = document.querySelector('#uploadArtArtistLink').value;
     let uploadArtTitle = document.querySelector('#uploadArtTitle').value;
     let uploadArtMedia = document.querySelector('#uploadArtMedia').value;
     let uploadArtDimension = document.querySelector('#uploadArtDimension').value;
@@ -49,11 +48,11 @@ function uploadArtworkSale() {
     for (var i = 0; i < image.length; i++) {
         var imageFile = image[i];
         var mainFile = mainImage[0];
-        uploadImageAsPromiseArtworkSales(mainFile, imageFile, image.length, i, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtDimension, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice)
+        uploadImageAsPromiseArtworkSales(mainFile, imageFile, image.length, i, uploadArtArtist, uploadArtCountry, uploadArtTitle, uploadArtMedia, uploadArtDimension, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice)
     }
 }
 
-function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, index, uploadArtArtist, uploadArtCountry, uploadArtArtistLink, uploadArtTitle, uploadArtMedia, uploadArtDimension, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice) {
+function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, index, uploadArtArtist, uploadArtCountry, uploadArtTitle, uploadArtMedia, uploadArtDimension, uploadArtType, uploadArtDescription, uploadArtPremiumType, uploadArtPrice) {
     return new Promise(function (resolve, reject) {
         var storageRef = firebase.storage().ref(uploadArtPremiumType.toLowerCase() + '/' + imageFile.name);
 
@@ -93,7 +92,6 @@ function uploadImageAsPromiseArtworkSales(mainFile, imageFile, imageLength, inde
                                 imageLength: imageLength,
                                 artist: uploadArtArtist,
                                 country: uploadArtCountry,
-                                artistLink: uploadArtArtistLink,
                                 title: uploadArtTitle,
                                 media: uploadArtMedia,
                                 dimension: uploadArtDimension,

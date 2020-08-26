@@ -10,15 +10,14 @@ var firestore = firebase.firestore();
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-var imageTitle = urlParams.get("imageTitle")
 var imageArtist = urlParams.get("imageArtist")
-var imageCollection = urlParams.get("imageCollection")
-var imageLength = urlParams.get("imageLength")
+// var imageCollection = urlParams.get("imageCollection")
+// var imageLength = urlParams.get("imageLength")
 
 getImageArtist();
 
 function getImageArtist() {
-    const db = firestore.collection(imageCollection).doc(imageArtist + " " + imageTitle);
+    const db = firestore.collection('artists').doc(imageArtist);
 
     db.get().then(function (doc) {
 
@@ -26,9 +25,9 @@ function getImageArtist() {
 
         for (var i = 0; i < dd.imageLength; i++) {
 
-            createLastPageImages(dd[i + 'url'], imageCollection, i + 'url');
+            createLastPageImages(dd[i + 'url'], 'artists', i + 'url');
         }
-        createLastPageDescription(dd.artist, dd.country, dd.title, dd.media, dd.description, dd.dimension, dd.price);
+        createLastPageDescription(dd.artist, dd.country, dd.description);
 
     }).catch(function (error) {
         console.log("Error getting document:", error);
@@ -61,19 +60,15 @@ function createLastPageImages(Url, Collection, indexUrl) {
 }
 
 // creates the description to the left of the last page
-function createLastPageDescription(Artist, Country, Title, Media, Description, Dimension, Price) {
+function createLastPageDescription(Artist, Country, Description) {
 
     var div = document.createElement('div');
     div.setAttribute('class', `content-text text`);
 
     var newDiv = `
         <div class="artwork-create-div">
-            <h2>題目 Title：${Title}</h2>
-            <h4>藝術家 Artist：<a href="ImageArtists.html?imageArtist=${Artist}">${Artist}</a></h4>
-            <h4>地區 Region：<span>${Country}</span> </h4>
-            <h4>媒體 Media：<span>${Media}</span></h4>
-            <h4>尺碼 Dimensions：<span>${Dimension}</span></h4>
-            <h4>賣價 Price: <span>${Price}</span></h4>
+            <h2>藝術家 Artist：${Artist} </h2>
+            <p>地區 Region：<span>${Country}</span> </p>
         </div>
         <br>
         <p>

@@ -67,9 +67,8 @@ function createEventsDiv(Year, Description, Url, CollectionName) {
         `
 
         <div class="content">
-            <button class="content-text" id="productBtn"
-                onclick="getImageSrc('${Url}','${CollectionName}')">
-                <a href="Image.html" style="text-decoration: none; color: black;">
+            <button class="content-text" id="productBtn">
+                <a href="Image.html?imageSrc=${Url}&collectionName=${CollectionName}" style="text-decoration: none; color: black;">
                     <img src="${Url}" style ="   width: 100% !important;    
                     height: auto !important; ">
                     <div class="content-text text">
@@ -112,12 +111,12 @@ function createArtworkDiv(Artist, Country, Title, Media, Dimension, Type, Descri
                 height: auto !important; ">
                 <div class="content-text text">
                     <div class="artwork-create-div">
-                        <h2>藝術家 Artist：${Artist}</h2>
-                        <p>地區 Region：<span>${Country}</span> </p>
-                        <p>題目 Title：<span>${Title}</span></p>
-                        <p>媒體 Media：<span>${Media}</span></p>
-                        <p>尺碼 Dimensions：<span>${Dimension}</span></p>
-                        <p>賣價 Price: <span>${Price}</span></p>
+                        <h2>題目 Title：${Title}</h2>
+                        <h5>藝術家 Artist：<span>${Artist}</span></h5>
+                        <h5>地區 Region：<span>${Country}</span> </h5>
+                        <h5>媒體 Media：<span>${Media}</span></h5>
+                        <h5>尺碼 Dimensions：<span>${Dimension}</span></h5>
+                        <h5>賣價 Price: <span>${Price}</span></h5>
                     </div>
                 </div>
             </a>
@@ -141,40 +140,21 @@ function collectArtists() {
             var dd = doc.data();
 
             // type is region
-            createArtistsDiv(dd.country, dd.artist, dd.description, uploadTheMainType, dd.imageLength);
+            createArtistsDiv(dd.country, dd.artist, uploadTheMainType, dd.imageLength);
         });
     });
 }
 
-function createArtistsDiv(Country, Artist, Description, UploadTheMainType, ImageLength) {
+function createArtistsDiv(Country, Artist, UploadTheMainType, ImageLength) {
     // create a div element
     var div = document.createElement('div');
 
     var newDiv =
         `
-        <span>${Artist}</span>
+        <span><a href="ImageArtists.html?imageArtist=${Artist}">${Artist}</a></span>
             `;
 
     div.innerHTML = newDiv;
     document.getElementById(Country).prepend(div);
 
-}
-
-function getArtistTitle(Title, Year, CollectionName, ImageLength) {
-    var imageTitle = Title;
-    var imageYear = Year;
-    var imageCollection = CollectionName;
-    var imageLength = ImageLength;
-
-    localStorage.setItem("imageTitle", imageTitle);
-    localStorage.setItem("imageYear", imageYear);
-    localStorage.setItem("imageCollection", imageCollection);
-    localStorage.setItem("imageLength", imageLength);
-
-    console.log('Image Title is set to: ', imageTitle);
-    console.log('Image Year is set to: ', imageYear);
-    console.log('Image Collection is set to: ', imageCollection);
-    console.log('Image length is set to: ', imageLength);
-
-    window.location.href = "ImageOpenCer.html";
 }

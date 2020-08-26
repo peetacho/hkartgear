@@ -227,7 +227,7 @@ nav {
 
 #productBtn:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.01);
     border: none;
 }
 
@@ -372,15 +372,23 @@ nav {
 /*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ARTWORK && LAST PAGE UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 
-.artwork-create-div p {
+.artwork-create-div p,
+h2,
+h3,
+h4,
+h5 {
     text-align: left;
-    font-weight: bold;
+    font-weight: bold !important;
+}
+
+.artwork-create-div a {
+    color: red;
+    text-decoration: none;
 }
 
 .artwork-create-div span {
     font-weight: 400;
 }
-
 
 .last-page {
     column-count: 2;
@@ -390,7 +398,7 @@ nav {
 
 /* #endregion */
 
-/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ARTWORK && LAST PAGE UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/*#region <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ARTISTS UPLOADS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 .artists {
     width: 35%;

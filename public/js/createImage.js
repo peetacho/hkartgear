@@ -20,21 +20,6 @@ switch (imageCollection) {
         uploadTheMainType = 'Gallery';
         getImageGallery();
         break;
-    case 'Interviews':
-        console.log('Interviews');
-        uploadTheMainType = 'Interviews';
-        getImageEvents();
-        break;
-    case 'Venue':
-        console.log('Venue');
-        uploadTheMainType = 'Venue';
-        getImageEvents();
-        break;
-    case 'OpenCeremony':
-        console.log('OpenCeremony');
-        uploadTheMainType = 'OpenCeremony';
-        getImageEvents();
-        break;
     case 'Events':
         console.log('Events');
         uploadTheMainType = 'Events';
