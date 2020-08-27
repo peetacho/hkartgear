@@ -9,11 +9,17 @@ var firestore = firebase.firestore();
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+// let urlParams = (new Url(document.location)).searchParams;
 
-var imageTitle = urlParams.get("imageTitle")
-var imageArtist = urlParams.get("imageArtist")
-var imageCollection = urlParams.get("imageCollection")
-var imageLength = urlParams.get("imageLength")
+const imageTitle = urlParams.get("imageTitle")
+const imageArtist = urlParams.get("imageArtist")
+const imageCollection = urlParams.get("imageCollection")
+const imageLength = urlParams.get("imageLength")
+
+console.log(imageTitle)
+console.log(imageArtist)
+console.log(imageCollection)
+console.log(imageLength)
 
 getImageArtist();
 
