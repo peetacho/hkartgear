@@ -7,8 +7,14 @@ if (!firebase.apps.length) {
 
 var firestore = firebase.firestore();
 
-var imageTitle = localStorage.getItem("imageTitle")
-var imageCollection = localStorage.getItem("imageCollection")
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+var imageCollection = urlParams.get("imageCollection")
+var imageTitle = urlParams.get("imageTitle")
+
+// var imageTitle = localStorage.getItem("imageTitle")
+// var imageCollection = localStorage.getItem("imageCollection")
 
 console.log('Collection: ' + imageCollection + '; Title: ' + imageTitle);
 
