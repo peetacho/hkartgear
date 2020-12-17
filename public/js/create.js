@@ -6,11 +6,18 @@ if (!firebase.apps.length) {
 var firestore = firebase.firestore();
 
 var uploadTheMainType = '';
+console.log("Wassup")
+console.log(document.title)
 
 switch (document.title) {
     case 'Artwork Sales':
         console.log('Artwork Sales');
         uploadTheMainType = 'Artwork Sales';
+        collectArtwork();
+        break;
+    case 'Premium Sales':
+        console.log('Premium Sales');
+        uploadTheMainType = 'Premium Sales';
         collectArtwork();
         break;
     case 'About':
